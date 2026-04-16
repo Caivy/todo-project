@@ -1,6 +1,7 @@
 {
   "name": "@repo/db",
   "version": "0.0.1",
+  "type": "module",
   "description": "",
   "author": "",
   "private": true,
@@ -20,18 +21,15 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
-      "default": "./dist/index.js"
+      "import": "./dist/index.js"
     },
     "./index": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
-      "default": "./dist/index.js"
+      "import": "./dist/index.js"
     },
     "./schema/*": {
       "types": "./dist/schema/*.d.ts",
-      "require": "./dist/schema/*.js",
-      "default": "./dist/schema/*.js"
+      "import": "./dist/schema/*.js"
     }
   },
   "files": [

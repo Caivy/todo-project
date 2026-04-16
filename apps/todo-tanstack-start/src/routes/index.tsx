@@ -1,11 +1,16 @@
 import { createFileRoute } from '@tanstack/react-router'
 import todosvg from '@/assets/todo.svg'
 import { useState } from 'react'
+import { createTodo, getTodoData } from '#/data/todo'
 
-export const Route = createFileRoute('/')({ component: App })
+export const Route = createFileRoute('/')({
+  component: App,
+  loader: () => getTodoData(),
+})
 
 function App() {
   const [todoValue, setTodoValue] = useState('')
+  const todo = Route.useLoaderData()
   return (
     <main className="page-warp min-h-screen px-4 items-center justify-center bg-gray-800">
       <div className="flex flex-col gap-7 min-h-screen items-center justify-center ">
@@ -30,8 +35,9 @@ function App() {
           </div>
           <button
             type="submit"
-            onClick={() => {
-              console.log(todoValue)
+            onClick={async () => {
+              const result = await createTodo({ data: { name: todoValue } })
+              console.log(`success : ${result}`)
               setTodoValue('')
             }}
             className="px-4 rounded-md bg-green-500 text-white font-bold"

@@ -20,6 +20,9 @@ importers:
 
   apps/todo-tanstack-start:
     dependencies:
+      '@repo/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@tailwindcss/vite':
         specifier: ^4.1.18
         version: 4.2.2(vite@8.0.8(@types/node@22.19.17)(esbuild@0.27.7)(jiti@2.6.1)(tsx@4.21.0))
@@ -47,18 +50,9 @@ importers:
       '@tanstack/router-plugin':
         specifier: ^1.132.0
         version: 1.167.22(@tanstack/react-router@1.168.22(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(vite@8.0.8(@types/node@22.19.17)(esbuild@0.27.7)(jiti@2.6.1)(tsx@4.21.0))
-      drizzle-kit:
-        specifier: ^0.31.9
-        version: 0.31.10
-      drizzle-orm:
-        specifier: ^0.45.1
-        version: 0.45.2(@types/pg@8.20.0)(pg@8.20.0)
       lucide-react:
         specifier: ^0.545.0
         version: 0.545.0(react@19.2.5)
-      pg:
-        specifier: ^8.16.3
-        version: 8.20.0
       react:
         specifier: ^19.2.0
         version: 19.2.5
@@ -68,6 +62,9 @@ importers:
       tailwindcss:
         specifier: ^4.1.18
         version: 4.2.2
+      zod:
+        specifier: ^4.3.6
+        version: 4.3.6
     devDependencies:
       '@tailwindcss/typography':
         specifier: ^0.5.16
@@ -3753,6 +3750,9 @@ packages:
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
+  zod@4.3.6:
+    resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
+
 snapshots:
 
   '@acemir/cssom@0.9.31': {}
@@ -7298,3 +7298,5 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   zod@3.25.76: {}
+
+  zod@4.3.6: {}

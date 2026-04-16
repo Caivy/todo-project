@@ -1,9 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
-import todosvg from 'public/todo.svg'
+import todosvg from '@/assets/todo.svg'
+import { useState } from 'react'
 
 export const Route = createFileRoute('/')({ component: App })
 
 function App() {
+  const [todoValue, setTodoValue] = useState('')
   return (
     <main className="page-warp min-h-screen px-4 items-center justify-center">
       <div className="flex flex-col gap-7 min-h-screen items-center justify-center ">
@@ -18,14 +20,27 @@ function App() {
             <input
               id="todo"
               name="todo"
+              value={todoValue}
               className="min-w-0 block grow py-2.5 pr-3 pl-4 text-base"
               placeholder="Take out the trash...."
+              onChange={(e) => setTodoValue(e.target.value)}
             ></input>
           </div>
-          <button className="px-4 rounded-md bg-green-500 text-white">
+          <button
+            type="submit"
+            onClick={() => {
+              console.log(todoValue)
+              setTodoValue('')
+            }}
+            className="px-4 rounded-md bg-green-500 text-white"
+          >
             Confirm
           </button>
-          <button className="px-4 rounded-md bg-red-500 text-white">
+          <button
+            type="reset"
+            className="px-4 rounded-md bg-red-500 text-white"
+            onClick={() => setTodoValue('')}
+          >
             Cancel
           </button>
         </div>

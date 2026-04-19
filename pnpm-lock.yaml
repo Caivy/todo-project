@@ -53,9 +53,15 @@ importers:
       '@tanstack/router-plugin':
         specifier: ^1.132.0
         version: 1.167.22(@tanstack/react-router@1.168.22(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(vite@8.0.8(@types/node@22.19.17)(esbuild@0.27.7)(jiti@2.6.1)(tsx@4.21.0))
+      drizzle-orm:
+        specifier: ^0.45.2
+        version: 0.45.2(@types/pg@8.20.0)(pg@8.20.0)
       lucide-react:
         specifier: ^0.545.0
         version: 0.545.0(react@19.2.5)
+      pg:
+        specifier: ^8.20.0
+        version: 8.20.0
       react:
         specifier: ^19.2.0
         version: 19.2.5
@@ -63,7 +69,7 @@ importers:
         specifier: ^19.2.0
         version: 19.2.5(react@19.2.5)
       tailwindcss:
-        specifier: ^4.1.18
+        specifier: ^4.2.2
         version: 4.2.2
       zod:
         specifier: ^4.3.6
@@ -88,7 +94,7 @@ importers:
         specifier: ^22.10.2
         version: 22.19.17
       '@types/pg':
-        specifier: ^8.15.6
+        specifier: ^8.20.0
         version: 8.20.0
       '@types/react':
         specifier: ^19.2.0
@@ -100,7 +106,7 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1(vite@8.0.8(@types/node@22.19.17)(esbuild@0.27.7)(jiti@2.6.1)(tsx@4.21.0))
       dotenv:
-        specifier: ^17.3.1
+        specifier: ^17.4.2
         version: 17.4.2
       jsdom:
         specifier: ^28.1.0

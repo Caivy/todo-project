@@ -1,4 +1,4 @@
-import { getTodoData } from '#/data/todo'
+import { deleteTodo, getTodoData } from '#/data/todo'
 import {
   Table,
   TableBody,
@@ -15,7 +15,7 @@ import {
   DropdownMenuTrigger,
 } from '@repo/ui/components/ui/dropdown-menu'
 import { Button } from '@repo/ui/components/ui/button'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { MoreHorizontalIcon } from 'lucide-react'
 
 export default function TodoTable() {
@@ -24,9 +24,10 @@ export default function TodoTable() {
     queryFn: () => getTodoData(),
   })
 
+  const queryClient = useQueryClient()
+
   return (
     <Table className="text-white">
-      {/* <TableCaption>A list of your Todos</TableCaption> */}
       <TableHeader>
         <TableRow>
           <TableHead className="text-white font-bold">Names</TableHead>
@@ -59,7 +60,13 @@ export default function TodoTable() {
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem>Edit</DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem variant="destructive">
+                  <DropdownMenuItem
+                    variant="destructive"
+                    onClick={async () => {
+                      await deleteTodo({ data: item.id })
+                      queryClient.invalidateQueries({ queryKey: ['todo'] })
+                    }}
+                  >
                     Delete
                   </DropdownMenuItem>
                 </DropdownMenuContent>

@@ -8,7 +8,8 @@ const todoSchema = z.object({
 })
 
 export const getTodoData = createServerFn().handler(async () => {
-  return await db.select().from(todo)
+  const result = await db.select().from(todo)
+  return result
 })
 
 export const createTodo = createServerFn({ method: 'POST' })

@@ -1,16 +1,20 @@
 import { createFileRoute } from '@tanstack/react-router'
 import todosvg from '@/assets/todo.svg'
 import { useState } from 'react'
-import { createTodo, getTodoData } from '#/data/todo'
+import { createTodo } from '#/data/todo'
+import TodoTable from '#/components/todoTable'
+import { Button } from '@repo/ui/components/ui/button'
+import { useQueryClient } from '@tanstack/react-query'
 
 export const Route = createFileRoute('/')({
   component: App,
-  loader: () => getTodoData(),
 })
 
 function App() {
   const [todoValue, setTodoValue] = useState('')
-  const todo = Route.useLoaderData()
+
+  const queryClient = useQueryClient()
+
   return (
     <main className="page-warp min-h-screen px-4 items-center justify-center bg-gray-800">
       <div className="flex flex-col gap-7 min-h-screen items-center justify-center ">
@@ -33,25 +37,26 @@ function App() {
               onChange={(e) => setTodoValue(e.target.value)}
             ></input>
           </div>
-          <button
+          <Button
             type="submit"
+            className="w-24 h-14 bg-green-500 font-bold"
             onClick={async () => {
-              const result = await createTodo({ data: { name: todoValue } })
-              console.log(`success : ${result}`)
+              await createTodo({ data: { name: todoValue } })
               setTodoValue('')
+              queryClient.invalidateQueries({ queryKey: ['todo'] })
             }}
-            className="px-4 rounded-md bg-green-500 text-white font-bold"
           >
             Confirm
-          </button>
-          <button
+          </Button>
+          <Button
             type="reset"
-            className="px-4 rounded-md bg-red-500 text-white font-bold"
+            className="w-24 h-14 bg-red-500 font-bold"
             onClick={() => setTodoValue('')}
           >
-            Cancel
-          </button>
+            Reset
+          </Button>
         </div>
+        <TodoTable />
       </div>
     </main>
   )
